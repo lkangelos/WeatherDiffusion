@@ -12,6 +12,10 @@ https://doi.org/10.1109/TPAMI.2023.3238179
 We perform experiments for image desnowing on [Snow100K](https://sites.google.com/view/yunfuliu/desnownet), combined image deraining and dehazing on [Outdoor-Rain](https://github.com/liruoteng/HeavyRainRemoval), and raindrop removal on
 the [RainDrop](https://github.com/rui1996/DeRaindrop) datasets. To train multi-weather restoration, we used the AllWeather training set from [TransWeather](https://github.com/jeya-maria-jose/TransWeather), which is composed of subsets of training images from these three benchmarks.
 
+## training
+```bash
+CUDA_VISIBLE_DEVICES=12,13,14,15 nohup python train_diffusion.py --config snow100k.yml --resume "/home/louanqi/pycharmp/ckpts/Snow100K_ddpm.pth.tar" > out.log 2>&1 &
+```
 
 ## Saved Model Weights
 

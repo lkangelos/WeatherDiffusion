@@ -1,0 +1,8 @@
+nohup: ignoring input
+Using device: cuda
+=> using dataset 'Snow100K'
+=> creating denoising-diffusion model...
+=> evaluating outdoor snow100K test set...
+50000
+=> loaded checkpoint '/home/louanqi/pycharmp/ckpts/Snow100K_ddpm.pth.tar' (epoch 1, step 1)
+epoch:  1
