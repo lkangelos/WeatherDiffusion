@@ -5,6 +5,7 @@ data:
     num_workers: 32
     data_dir: "/home/louanqi/pycharmp/"
     conditional: True
+    reverse: True
 
 model:
     in_channels: 3
