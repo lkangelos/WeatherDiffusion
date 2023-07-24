@@ -10,26 +10,26 @@ import re
 import random
 
 
-class Snow100K:
+class Rice2:
     def __init__(self, config):
         self.config = config
         self.transforms = torchvision.transforms.Compose(
             [torchvision.transforms.ToTensor()])
 
-    def get_loaders(self, parse_patches=True, validation='snow'):
-        print("=> evaluating outdoor snow100K test set...")
-        train_dataset = Snow100KDataset(dir=os.path.join(self.config.data.data_dir, 'data', 'snow100k', 'train'),
+    def get_loaders(self, parse_patches=True, validation='rice'):
+        print("=> evaluating outdoor Rice2 test set...")
+        train_dataset = Rice2Dataset(dir=os.path.join(self.config.data.data_dir, 'data', 'rice2', 'train'),
                                         n=self.config.training.patch_n,
                                         patch_size=self.config.data.image_size,
                                         transforms=self.transforms,
                                         filelist=None,
                                         parse_patches=parse_patches,
                                         reverse_img=self.config.data.reverse)
-        val_dataset = Snow100KDataset(dir=os.path.join(self.config.data.data_dir, 'data', 'snow100k'),
+        val_dataset = Rice2Dataset(dir=os.path.join(self.config.data.data_dir, 'data', 'rice2', 'val'),
                                       n=self.config.training.patch_n,
                                       patch_size=self.config.data.image_size,
                                       transforms=self.transforms,
-                                      filelist='snowtest100k_L.txt',
+                                      filelist=None,
                                       parse_patches=parse_patches,
                                       reverse_img=self.config.data.reverse)
 
@@ -47,21 +47,21 @@ class Snow100K:
         return train_loader, val_loader
 
 
-class Snow100KDataset(torch.utils.data.Dataset):
+class Rice2Dataset(torch.utils.data.Dataset):
     def __init__(self, dir, patch_size, n, transforms, filelist=None, parse_patches=True, reverse_img=False):
         super().__init__()
 
         if filelist is None:
-            snow100k_dir = dir
+            rice2_dir = dir
             input_names, gt_names = [], []
 
-            # Snow100K train filelist
-            snow_inputs = os.path.join(snow100k_dir, 'input')
-            images = [f for f in listdir(snow_inputs) if isfile(
-                os.path.join(snow_inputs, f))]
-            assert len(images) == 50000
-            input_names += [os.path.join(snow_inputs, i) for i in images]
-            gt_names += [os.path.join(os.path.join(snow100k_dir, 'gt'), i)
+            # Rice2 train filelist
+            rice_inputs = os.path.join(rice2_dir, 'input')
+            images = [f for f in listdir(rice_inputs) if isfile(
+                os.path.join(rice_inputs, f))]
+            # assert len(images) == 50000
+            input_names += [os.path.join(rice_inputs, i) for i in images]
+            gt_names += [os.path.join(os.path.join(rice2_dir, 'gt'), i)
                          for i in images]
             print(len(input_names))
 
