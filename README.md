@@ -17,6 +17,11 @@ the [RainDrop](https://github.com/rui1996/DeRaindrop) datasets. To train multi-w
 CUDA_VISIBLE_DEVICES=5,6,9,10 nohup python train_diffusion.py --config snow100k.yml > out_reverse.log 2>&1 &
 ```
 
+## eval
+```bash
+nohup python eval_diffusion.py --config dota1024.yml --resume /home/louanqi/pycharmp/ckpts/Snow100K_ddpm.pth.tar --test_set dota > out_eval.log 2>&1 &
+```
+
 ## Saved Model Weights
 
 We share a pre-trained diffusive **multi-weather** restoration model [WeatherDiff<sub>64</sub>](https://igi-web.tugraz.at/download/OzdenizciLegensteinTPAMI2023/WeatherDiff64.pth.tar) with the network configuration in `configs/allweather.yml`.
