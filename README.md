@@ -20,6 +20,7 @@ CUDA_VISIBLE_DEVICES=12,13,14,15 nohup python train_diffusion.py --config haze.y
 ## eval
 ```bash
 CUDA_VISIBLE_DEVICES=3 python eval_diffusion.py --config dota1024.yml --resume /home/louanqi/pycharmp/ckpts/Snow100K_ddpm.pth.tar --test_set snow
+CUDA_VISIBLE_DEVICES=3 python eval_image.py --config dota1024.yml --resume /home/louanqi/pycharmp/ckpts/Snow100K_ddpm.pth.tar --test_set snow
 ```
 
 ## Saved Model Weights

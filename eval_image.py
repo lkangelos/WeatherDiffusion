@@ -48,6 +48,7 @@ def dict2namespace(config):
         setattr(namespace, key, new_value)
     return namespace
 
+
 def inverse_data_transform(X):
     return torch.clamp((X + 1.0) / 2.0, 0.0, 1.0)
 
@@ -58,6 +59,7 @@ def overlapping_grid_indices(x_cond, output_size, r=None):
     h_list = [i for i in range(0, h - output_size + 1, r)]
     w_list = [i for i in range(0, w - output_size + 1, r)]
     return h_list, w_list
+
 
 def main():
     args, config = parse_args_and_config()
@@ -77,17 +79,11 @@ def main():
         torch.cuda.manual_seed_all(args.seed)
     torch.backends.cudnn.benchmark = True
 
-    # data loading
-    print("=> using dataset '{}'".format(config.data.dataset))
-    DATASET = datasets.__dict__[config.data.dataset](config)
-    _, val_loader = DATASET.get_loaders(parse_patches=False, validation=args.test_set)
-
     # create model
     print("=> creating denoising-diffusion model with wrapper...")
     diffusion = DenoisingDiffusion(args, config)
-    model = DiffusiveRestoration(diffusion, args, config)
-    # model.restore(val_loader, validation=args.test_set, r=args.grid_r)
 
+    x_cond = torch.zeros((1, 3, 1024, 1024)).to(diffusion.device)
     image_folder = os.path.join(args.image_folder, config.data.dataset, args.test_set)
     p_size = config.data.image_size
     h_list, w_list = overlapping_grid_indices(x_cond, output_size=p_size, r=args.grid_r)

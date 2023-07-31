@@ -24,14 +24,14 @@ class Rice2:
                                         transforms=self.transforms,
                                         filelist=None,
                                         parse_patches=parse_patches,
-                                        reverse_img=self.config.data.reverse)
+                                        reverse_img=self.config.data.reverse_img)
         val_dataset = Rice2Dataset(dir=os.path.join(self.config.data.data_dir, 'data', 'rice2', 'val'),
                                       n=self.config.training.patch_n,
                                       patch_size=self.config.data.image_size,
                                       transforms=self.transforms,
                                       filelist=None,
                                       parse_patches=parse_patches,
-                                      reverse_img=self.config.data.reverse)
+                                      reverse_img=self.config.data.reverse_img)
 
         if not parse_patches:
             self.config.training.batch_size = 1

@@ -24,14 +24,14 @@ class Snow100K:
                                         transforms=self.transforms,
                                         filelist=None,
                                         parse_patches=parse_patches,
-                                        reverse_img=self.config.data.reverse)
+                                        reverse_img=self.config.data.reverse_img)
         val_dataset = Snow100KDataset(dir=os.path.join(self.config.data.data_dir, 'data', 'snow100k'),
                                       n=self.config.training.patch_n,
                                       patch_size=self.config.data.image_size,
                                       transforms=self.transforms,
                                       filelist='snowtest100k_L.txt',
                                       parse_patches=parse_patches,
-                                      reverse_img=self.config.data.reverse)
+                                      reverse_img=self.config.data.reverse_img)
 
         if not parse_patches:
             self.config.training.batch_size = 1
