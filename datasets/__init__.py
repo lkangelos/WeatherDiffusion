@@ -4,5 +4,6 @@ from datasets.outdoorrain import *
 from datasets.raindrop import *
 from datasets.dota1024 import *
 from datasets.rice2 import *
+from datasets.haze import *
 
-__all__ = ["AllWeather", "Snow100K", "OutdoorRain", "RainDrop", "Dota1024", "Rice2"]
+__all__ = ["AllWeather", "Snow100K", "OutdoorRain", "RainDrop", "Dota1024", "Rice2", "Haze"]

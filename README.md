@@ -14,12 +14,12 @@ the [RainDrop](https://github.com/rui1996/DeRaindrop) datasets. To train multi-w
 
 ## training
 ```bash
-CUDA_VISIBLE_DEVICES=5,6,9,10 nohup python train_diffusion.py --config snow100k.yml > out_reverse.log 2>&1 &
+CUDA_VISIBLE_DEVICES=12,13,14,15 nohup python train_diffusion.py --config haze.yml > out_haze_reverse.log 2>&1 &
 ```
 
 ## eval
 ```bash
-nohup python eval_diffusion.py --config dota1024.yml --resume /home/louanqi/pycharmp/ckpts/Snow100K_ddpm.pth.tar --test_set dota > out_eval.log 2>&1 &
+CUDA_VISIBLE_DEVICES=3 python eval_diffusion.py --config dota1024.yml --resume /home/louanqi/pycharmp/ckpts/Snow100K_ddpm.pth.tar --test_set snow
 ```
 
 ## Saved Model Weights

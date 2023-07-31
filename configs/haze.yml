@@ -1,5 +1,5 @@
 data:
-    dataset: "Rice2"
+    dataset: "Haze"
     image_size: 64
     channels: 3
     num_workers: 32
