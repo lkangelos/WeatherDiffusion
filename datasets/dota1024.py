@@ -25,7 +25,7 @@ class Dota1024:
                                         filelist=None,
                                         parse_patches=parse_patches,
                                         reverse_img=self.config.data.reverse_img)
-        val_dataset = Dota1024Dataset(dir=os.path.join(self.config.data.data_dir, 'data', 'dota_1024', 'val_split'),
+        val_dataset = Dota1024Dataset(dir=os.path.join(self.config.data.data_dir, 'data', 'dota_1024', 'val_black'),
                                       n=self.config.training.patch_n,
                                       patch_size=self.config.data.image_size,
                                       transforms=self.transforms,

@@ -211,7 +211,7 @@ class DenoisingDiffusion(object):
 
     def sample_validation_patches(self, val_loader, step):
         image_folder = os.path.join(
-            self.args.image_folder, self.config.data.dataset + str(self.config.data.image_size) + "_")
+            self.args.image_folder, self.config.data.dataset + str(self.config.data.image_size) + "_cloud")
         with torch.no_grad():
             print(
                 f"Processing a single batch of validation images at step: {step}")
