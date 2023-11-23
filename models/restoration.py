@@ -30,12 +30,12 @@ class DiffusiveRestoration:
         image_folder = os.path.join(self.args.image_folder, self.config.data.dataset, validation)
         with torch.no_grad():
             for i, (x, y) in enumerate(val_loader):
-                print(f"starting processing from image {y}")
+                print(f"starting processing from image {y[0]}")
                 x = x.flatten(start_dim=0, end_dim=1) if x.ndim == 5 else x
                 x_cond = x[:, :3, :, :].to(self.diffusion.device)
                 x_output = self.diffusive_restoration(x_cond, r=r)
                 x_output = inverse_data_transform(x_output)
-                utils.logging.save_image(x_output, os.path.join(image_folder, f"{y}_output.png"))
+                utils.logging.save_image(x_output, os.path.join(image_folder, f"{y[0]}.png"))
 
     def diffusive_restoration(self, x_cond, r=None):
         p_size = self.config.data.image_size

@@ -1,5 +1,5 @@
 data:
-    dataset: "Rice2"
+    dataset: "RSHaze"
     image_size: 64
     channels: 3
     num_workers: 32
@@ -28,7 +28,7 @@ diffusion:
 training:
     patch_n: 16
     batch_size: 16
-    n_epochs: 20000
+    n_epochs: 1068
     n_iters: 200000
     snapshot_freq: 2000
     validation_freq: 2000

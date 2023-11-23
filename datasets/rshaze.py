@@ -5,27 +5,27 @@ import torch
 import numpy as np
 import torchvision
 import torch.utils.data
-from PIL import Image 
+from PIL import Image
 import re
 import random
 
 
-class Dota1024:
+class RSHaze:
     def __init__(self, config):
         self.config = config
         self.transforms = torchvision.transforms.Compose(
             [torchvision.transforms.ToTensor()])
 
-    def get_loaders(self, parse_patches=True, validation='dota'):
-        print("=> evaluating outdoor dota1024 test set...")
-        train_dataset = Dota1024Dataset(dir=os.path.join(self.config.data.data_dir, 'data', 'dota-v2-1024', 'val'),
+    def get_loaders(self, parse_patches=True, validation='rshaze'):
+        print("=> evaluating outdoor RSHaze test set...")
+        train_dataset = RSHazeDataset(dir=os.path.join(self.config.data.data_dir, 'data', 'rshaze-d', 'train'),
                                         n=self.config.training.patch_n,
                                         patch_size=self.config.data.image_size,
                                         transforms=self.transforms,
                                         filelist=None,
                                         parse_patches=parse_patches,
                                         reverse_img=self.config.data.reverse_img)
-        val_dataset = Dota1024Dataset(dir=os.path.join(self.config.data.data_dir, 'data', 'dota-v2-1024', 'val'),
+        val_dataset = RSHazeDataset(dir=os.path.join(self.config.data.data_dir, 'data', 'rshaze-d', 'test'),
                                       n=self.config.training.patch_n,
                                       patch_size=self.config.data.image_size,
                                       transforms=self.transforms,
@@ -47,21 +47,21 @@ class Dota1024:
         return train_loader, val_loader
 
 
-class Dota1024Dataset(torch.utils.data.Dataset):
+class RSHazeDataset(torch.utils.data.Dataset):
     def __init__(self, dir, patch_size, n, transforms, filelist=None, parse_patches=True, reverse_img=False):
         super().__init__()
 
         if filelist is None:
-            dota1024_dir = dir
+            rshaze_dir = dir
             input_names, gt_names = [], []
 
-            # Dota1024 train filelist
-            dota_inputs = os.path.join(dota1024_dir, 'tmp5')
-            images = [f for f in listdir(dota_inputs) if isfile(
-                os.path.join(dota_inputs, f))]
+            # RSHaze train filelist
+            rshaze_inputs = os.path.join(rshaze_dir, 'input')
+            images = [f for f in listdir(rshaze_inputs) if isfile(
+                os.path.join(rshaze_inputs, f))]
             # assert len(images) == 50000
-            input_names += [os.path.join(dota_inputs, i) for i in images]
-            gt_names += [os.path.join(os.path.join(dota1024_dir, 'tmp5'), i)
+            input_names += [os.path.join(rshaze_inputs, i) for i in images]
+            gt_names += [os.path.join(os.path.join(rshaze_dir, 'gt'), i)
                          for i in images]
             print(len(input_names))
 
@@ -76,7 +76,7 @@ class Dota1024Dataset(torch.utils.data.Dataset):
             with open(train_list) as f:
                 contents = f.readlines()
                 input_names = [i.strip() for i in contents]
-                gt_names = [i.strip().replace('input', 'gt')
+                gt_names = [i.strip().replace('cloud', 'black')
                             for i in input_names]
 
         self.input_names = input_names

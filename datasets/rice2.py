@@ -56,12 +56,12 @@ class Rice2Dataset(torch.utils.data.Dataset):
             input_names, gt_names = [], []
 
             # Rice2 train filelist
-            rice_inputs = os.path.join(rice2_dir, 'cloud_less')
+            rice_inputs = os.path.join(rice2_dir, 'input_less')
             images = [f for f in listdir(rice_inputs) if isfile(
                 os.path.join(rice_inputs, f))]
             # assert len(images) == 50000
             input_names += [os.path.join(rice_inputs, i) for i in images]
-            gt_names += [os.path.join(os.path.join(rice2_dir, 'black_less'), i)
+            gt_names += [os.path.join(os.path.join(rice2_dir, 'gt_less'), i)
                          for i in images]
             print(len(input_names))
 

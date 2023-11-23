@@ -194,7 +194,7 @@ class DenoisingDiffusion(object):
                         'ema_helper': self.ema_helper.state_dict(),
                         'params': self.args,
                         'config': self.config
-                    }, filename=os.path.join(self.config.data.data_dir, 'ckpts', self.config.data.dataset + '_ddpm'))
+                    }, filename=os.path.join(self.config.data.data_dir, 'ckpts', self.config.data.dataset + '_d_ddpm'))
 
     def sample_image(self, x_cond, x, last=True, patch_locs=None, patch_size=None):
         skip = self.config.diffusion.num_diffusion_timesteps // self.args.sampling_timesteps
@@ -211,7 +211,7 @@ class DenoisingDiffusion(object):
 
     def sample_validation_patches(self, val_loader, step):
         image_folder = os.path.join(
-            self.args.image_folder, self.config.data.dataset + str(self.config.data.image_size) + "_cloud")
+            self.args.image_folder, self.config.data.dataset + str(self.config.data.image_size) + "_rshaze-d")
         with torch.no_grad():
             print(
                 f"Processing a single batch of validation images at step: {step}")

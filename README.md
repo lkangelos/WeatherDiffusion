@@ -19,7 +19,10 @@ CUDA_VISIBLE_DEVICES=4 python train_diffusion.py --config rice2.yml &> out_rice_
 
 ## eval
 ```bash
-CUDA_VISIBLE_DEVICES=3 python eval_diffusion.py --config dota1024.yml --resume /home/louanqi/pycharmp/ckpts/Snow100K_ddpm.pth.tar --test_set snow
+CUDA_VISIBLE_DEVICES=13 python eval_diffusion.py --config dota1024.yml --resume /home/louanqi/pycharmp/ckpts/RSHaze_ddpm_20.pth.tar --test_set rshaze_mix_last
+```
+```shell
+CUDA_VISIBLE_DEVICES=5 python eval_diffusion.py --config dota1024.yml --resume /home/louanqi/pycharmp/ckpts/Snow100K_ddpm.pth.tar --test_set snow100k_mix_last
 ```
 
 ## Saved Model Weights
